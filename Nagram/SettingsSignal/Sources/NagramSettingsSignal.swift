@@ -87,7 +87,7 @@ public func nagramGlassTransparencySignal() -> Signal<Int32, NoError> {
         let defaultsObserver = NotificationCenter.default.addObserver(
             forName: UserDefaults.didChangeNotification,
             object: UserDefaults.standard,
-            queue: nil
+            queue: .main
         ) { _ in
             let updatedMode = NagramSettings.shared.glassTransparencyMode
             let updatedPercent = NagramSettings.shared.glassTransparencyPercent
@@ -102,7 +102,7 @@ public func nagramGlassTransparencySignal() -> Signal<Int32, NoError> {
         let accessibilityObserver = NotificationCenter.default.addObserver(
             forName: UIAccessibility.reduceTransparencyStatusDidChangeNotification,
             object: nil,
-            queue: nil
+            queue: .main
         ) { _ in
             version += 1
             subscriber.putNext(version)
